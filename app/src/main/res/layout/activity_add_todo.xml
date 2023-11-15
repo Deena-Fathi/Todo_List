@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/lg"
+    android:paddingVertical="@dimen/xl"
+    tools:context=".ui.AddTodoActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_todo_title"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/xxl"
+        android:labelFor="@id/edit_text_todo"
+        android:text="@string/todo_input_label"
+        android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
+
+    <EditText
+        android:id="@+id/edit_text_todo"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/lg"
+        android:labelFor="@id/edit_text_todo_date"
+        android:text="@string/todo_date_input_label"
+        android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
+
+    <EditText
+        android:id="@+id/edit_text_todo_date"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/lg"
+        android:labelFor="@id/edit_text_todo_time"
+        android:text="@string/todo_time_input_label"
+        android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
+
+    <EditText
+        android:id="@+id/edit_text_todo_time"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="time" />
+
+    <Button
+        android:id="@+id/button_save_todo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/xl"
+        android:text="@string/button_save_todo_text" />
+</LinearLayout>
