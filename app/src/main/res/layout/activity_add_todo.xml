@@ -69,6 +69,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/xl"
+        android:layout_marginTop="@dimen/xxl"
         android:text="@string/button_save_todo_text" />
 </LinearLayout>
