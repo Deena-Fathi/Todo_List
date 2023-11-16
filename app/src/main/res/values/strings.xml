@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">To-do List</string>
+    <string name="app_name">Todo List</string>
+    <string name="welcome_title">Welcome to your todo list!</string>
+    <string name="welcome_button_text">Get started</string>
+    <string name="add_todo_content_description">Add a todo</string>
+    <string name="todos_title_today">Today</string>
+    <string name="todos_title_upcoming">Upcoming</string>
+    <string name="add_todo_title">Add Todo</string>
+    <string name="todo_input_label">Todo</string>
+    <string name="todo_date_input_label">Date</string>
+    <string name="todo_time_input_label">Time</string>
+    <string name="button_save_todo_text">Save</string>
 </resources>
