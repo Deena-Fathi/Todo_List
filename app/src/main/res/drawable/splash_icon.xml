@@ -23,8 +23,8 @@
     <target android:name="check_path">
         <aapt:attr name="android:animation">
             <objectAnimator
-                android:duration="1000"
-                android:startOffset="200"
+                android:duration="500"
+                android:startOffset="250"
                 android:interpolator="@android:anim/decelerate_interpolator"
                 android:propertyName="trimPathEnd"
                 android:valueFrom="0"
