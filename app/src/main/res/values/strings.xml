@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Todo List</string>
     <string name="title_welcome">Welcome to your todo list!</string>
-    <string name="button_welcome_text">Get started</string>
+    <string name="button_get_started_text">Get started</string>
     <string name="button_add_todo_content_description">Add a todo</string>
     <string name="title_todos_today">Today</string>
     <string name="title_todos_upcoming">Upcoming</string>

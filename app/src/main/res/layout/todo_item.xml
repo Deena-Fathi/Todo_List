@@ -18,11 +18,11 @@
         tools:text="Exercise today" />
 
     <TextView
-        android:id="@+id/text_todo_time"
+        android:id="@+id/text_todo_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="9:30 PM" />
+        tools:text="Today, 9:30 PM" />
 </androidx.constraintlayout.widget.ConstraintLayout>
