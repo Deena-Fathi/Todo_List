@@ -3,15 +3,15 @@ package com.example.to_dolist.data;
 import java.util.Date;
 
 public class Todo {
-    Date date;
-
     String todo;
+
+    Date date;
 
     boolean done;
 
-    public Todo(Date date, String todo, boolean done) {
-        this.date = date;
+    public Todo(String todo, Date date, boolean done) {
         this.todo = todo;
+        this.date = date;
         this.done = done;
     }
 }

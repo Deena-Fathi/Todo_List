@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_neutral_variant95">
+    tools:context=".ui.TodosActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -20,8 +20,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/todos_title_today"
-                android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+                android:text="@string/title_todos_today"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
                 android:textStyle="bold" />
 
             <TextView
@@ -37,15 +37,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/xl"
-                android:background="@drawable/todos_background"
+                android:background="@drawable/rounded_surface"
                 android:orientation="vertical" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/xxl"
-                android:text="@string/todos_title_upcoming"
-                android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+                android:text="@string/title_todos_upcoming"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/xl"
-                android:background="@drawable/todos_background"
+                android:background="@drawable/rounded_surface"
                 android:orientation="vertical" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/xl"
-        android:contentDescription="@string/add_todo_content_description"
+        android:contentDescription="@string/button_add_todo_content_description"
         android:src="@drawable/plus"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
