@@ -48,7 +48,7 @@ public class AddTodoActivity extends AppCompatActivity {
 
     private void onShowDatePicker(View v) {
         final TodoDatePickerFragment datePicker = new TodoDatePickerFragment();
-        datePicker.show(getSupportFragmentManager(), "TodoTimePicker");
+        datePicker.show(getSupportFragmentManager(), "TodoDatePicker");
     }
 
     private void onShowTimePicker(View v) {
