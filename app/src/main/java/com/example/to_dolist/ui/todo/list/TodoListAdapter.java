@@ -1,4 +1,4 @@
-package com.example.to_dolist.ui;
+package com.example.to_dolist.ui.todo.list;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,36 +14,45 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.to_dolist.R;
 import com.example.to_dolist.database.Todo;
 
-public class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
+class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
+        @NonNull
         private final CheckBox todoCheckbox;
 
+        @NonNull
         private final TextView todoDateText;
 
-        private ViewHolder(View itemView) {
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.todoCheckbox = itemView.findViewById(R.id.checkbox_todo);
             this.todoDateText = itemView.findViewById(R.id.text_todo_date);
         }
 
-        public void bind(Todo todo) {
+        @NonNull
+        static ViewHolder fromParent(@NonNull ViewGroup parent) {
+            final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            final View item = inflater.inflate(R.layout.todo_item, parent, false);
+            return new ViewHolder(item);
+        }
+
+        void bind(@NonNull Todo todo) {
             todoCheckbox.setText(todo.getTodo());
             todoCheckbox.setChecked(todo.done());
-            todoDateText.setText(todo.getDate());
+            // TODO: format date according to locale
+            todoDateText.setText(todo.getDate().toString());
         }
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final View item = inflater.inflate(R.layout.todo_item, parent, false);
-        return new ViewHolder(item);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return ViewHolder.fromParent(parent);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Todo todo = getItem(position);
         holder.bind(todo);
     }
@@ -63,7 +72,7 @@ public class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolde
         }
     }
 
-    public TodoListAdapter() {
+    TodoListAdapter() {
         super(new TodoDiff());
     }
 }

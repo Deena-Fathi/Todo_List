@@ -9,7 +9,7 @@
     android:elevation="@dimen/md"
     android:orientation="vertical"
     android:padding="@dimen/xxl"
-    tools:context=".ui.AddTodoActivity">
+    tools:context=".ui.add.todo.AddTodoActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,39 +33,62 @@
         android:layout_height="48dp"
         android:ems="10"
         android:importantForAutofill="no"
-        android:inputType="text" />
+        android:inputType="text"
+        tools:text="Workout" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/lg"
-        android:labelFor="@id/input_todo_date"
-        android:text="@string/label_input_todo_date"
-        android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
+        android:layout_marginTop="@dimen/lg">
 
-    <EditText
-        android:id="@+id/input_todo_date"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:inputType="date" />
+        <TextView
+            android:id="@+id/text_todo_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/todo_date_picker_placeholder_text"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/button_todo_date_picker"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/button_todo_date_picker_content_description"
+            app:icon="@drawable/ic_date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/lg"
-        android:labelFor="@id/input_todo_time"
-        android:text="@string/label_input_todo_time"
-        android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
+        android:layout_marginTop="@dimen/lg">
 
-    <EditText
-        android:id="@+id/input_todo_time"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:inputType="time" />
+        <TextView
+            android:id="@+id/text_todo_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/todo_time_picker_placeholder_text"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button_todo_time_picker"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/button_todo_time_picker_content_description"
+            app:icon="@drawable/ic_time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/button_save_todo"

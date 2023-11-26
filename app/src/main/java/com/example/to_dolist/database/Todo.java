@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity(tableName = "todos")
 public class Todo {
 
@@ -14,11 +16,11 @@ public class Todo {
     private final String todo;
 
     @NonNull
-    private final String date;
+    private final Date date;
 
     private final boolean done;
 
-    public Todo(int id, @NonNull String todo, @NonNull String date, boolean done) {
+    public Todo(int id, @NonNull String todo, @NonNull Date date, boolean done) {
         this.id = id;
         this.todo = todo;
         this.date = date;
@@ -35,7 +37,7 @@ public class Todo {
     }
 
     @NonNull
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 

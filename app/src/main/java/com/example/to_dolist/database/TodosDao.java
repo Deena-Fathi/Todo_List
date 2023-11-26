@@ -10,7 +10,7 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface TodosDao {
+interface TodosDao {
 
     // Prevent insertion if the passed to-do conflicts
     // with an existing to-do in the database.

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.TodosActivity">
+    tools:context=".ui.todo.list.TodoListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_todos"
@@ -12,10 +12,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/lg"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:itemCount="3"
         tools:listitem="@layout/todo_item" />
 
@@ -25,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/xl"
         android:contentDescription="@string/button_add_todo_content_description"
-        android:src="@drawable/plus"
+        android:src="@drawable/ic_plus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
