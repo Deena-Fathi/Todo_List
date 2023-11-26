@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,35 +14,41 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.to_dolist.R;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Date;
+
 public class AddTodoActivity extends AppCompatActivity {
+
+    private AddTodoViewModel viewModel;
+
+    private EditText todoInput;
+
+    private Button datePickerButton;
+
+    private TextView dateText;
+
+    private Button timePickerButton;
+
+    private TextView timeText;
+
+    private Button saveButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_todo);
 
-        final AddTodoViewModel viewModel = new ViewModelProvider(this)
-                .get(AddTodoViewModel.class);
+        viewModel = new ViewModelProvider(this).get(AddTodoViewModel.class);
+        todoInput = findViewById(R.id.input_todo);
+        datePickerButton = findViewById(R.id.button_todo_date_picker);
+        dateText = findViewById(R.id.text_todo_date);
+        timePickerButton = findViewById(R.id.button_todo_time_picker);
+        timeText = findViewById(R.id.text_todo_time);
+        saveButton = findViewById(R.id.button_save_todo);
 
-        final Button datePickerButton = findViewById(R.id.button_todo_date_picker);
         datePickerButton.setOnClickListener(this::onShowDatePicker);
-
-        final Button timePickerButton = findViewById(R.id.button_todo_time_picker);
         timePickerButton.setOnClickListener(this::onShowTimePicker);
-
-        final TextView dateText = findViewById(R.id.text_todo_date);
-        final TextView timeText = findViewById(R.id.text_todo_time);
-        viewModel.getDate().observe(this, date -> {
-            // TODO: update `dateText` and `timeText`
-            Log.d("AddTodoActivity", "date: " + date);
-        });
-
-        final EditText todoInput = findViewById(R.id.input_todo);
-        final Button saveButton = findViewById(R.id.button_save_todo);
-        saveButton.setOnClickListener(v -> {
-            final String todo = todoInput.getText().toString();
-            viewModel.onSave(todo, this::onSaveError, this::onSaveSuccess);
-        });
+        viewModel.getDate().observe(this, this::onDateChanged);
+        saveButton.setOnClickListener(this::onSave);
     }
 
     private void onShowDatePicker(View v) {
@@ -56,7 +61,17 @@ public class AddTodoActivity extends AppCompatActivity {
         timePicker.show(getSupportFragmentManager(), "TodoTimePicker");
     }
 
-    private void onSaveError(@NonNull String error) {
+    private void onDateChanged(Date date) {
+        // TODO: update `dateText` and `timeText`
+        Log.d("AddTodoActivity", "date: " + date);
+    }
+
+    private void onSave(View v) {
+        final String todo = todoInput.getText().toString();
+        viewModel.onSave(todo, this::onSaveError, this::onSaveSuccess);
+    }
+
+    private void onSaveError(String error) {
         Snackbar.make(findViewById(android.R.id.content), error, Snackbar.LENGTH_LONG).show();
     }
 

@@ -24,17 +24,10 @@ class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
         @NonNull
         private final TextView todoDateText;
 
-        private ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.todoCheckbox = itemView.findViewById(R.id.checkbox_todo);
             this.todoDateText = itemView.findViewById(R.id.text_todo_date);
-        }
-
-        @NonNull
-        static ViewHolder fromParent(@NonNull ViewGroup parent) {
-            final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            final View item = inflater.inflate(R.layout.todo_item, parent, false);
-            return new ViewHolder(item);
         }
 
         void bind(@NonNull Todo todo) {
@@ -48,7 +41,9 @@ class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return ViewHolder.fromParent(parent);
+        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        final View item = inflater.inflate(R.layout.todo_item, parent, false);
+        return new ViewHolder(item);
     }
 
     @Override

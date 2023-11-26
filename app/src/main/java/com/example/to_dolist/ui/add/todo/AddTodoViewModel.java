@@ -35,7 +35,7 @@ public class AddTodoViewModel extends AndroidViewModel {
         Log.d("AddTodoViewModel", "onDatePickerSet: " + year + ", " + month + ", " + day);
     }
 
-    public void onSave(String todo, Consumer<String> onError, Runnable onSuccess) {
+    public void onSave(@NonNull String todo, Consumer<String> onError, Runnable onSuccess) {
         // TODO: implement `onSave`
         onError.accept("Save todo not yet implemented");
     }
