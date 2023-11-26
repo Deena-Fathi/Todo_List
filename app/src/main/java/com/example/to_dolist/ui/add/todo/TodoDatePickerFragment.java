@@ -20,7 +20,7 @@ public class TodoDatePickerFragment extends DialogFragment implements DatePicker
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        FragmentActivity activity = requireActivity();
+        final FragmentActivity activity = requireActivity();
         viewModel = new ViewModelProvider(activity).get(AddTodoViewModel.class);
 
         // Use the current date as the default date in the picker.

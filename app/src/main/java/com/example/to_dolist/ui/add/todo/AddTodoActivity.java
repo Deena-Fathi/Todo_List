@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,7 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class AddTodoActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_todo);
 
@@ -39,7 +41,7 @@ public class AddTodoActivity extends AppCompatActivity {
         final EditText todoInput = findViewById(R.id.input_todo);
         final Button saveButton = findViewById(R.id.button_save_todo);
         saveButton.setOnClickListener(v -> {
-            String todo = todoInput.getText().toString();
+            final String todo = todoInput.getText().toString();
             viewModel.onSave(todo, this::onSaveError, this::onSaveSuccess);
         });
     }
@@ -54,7 +56,7 @@ public class AddTodoActivity extends AppCompatActivity {
         timePicker.show(getSupportFragmentManager(), "TodoTimePicker");
     }
 
-    private void onSaveError(String error) {
+    private void onSaveError(@NonNull String error) {
         Snackbar.make(findViewById(android.R.id.content), error, Snackbar.LENGTH_LONG).show();
     }
 

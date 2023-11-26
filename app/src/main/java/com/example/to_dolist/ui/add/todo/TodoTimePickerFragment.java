@@ -21,7 +21,7 @@ public class TodoTimePickerFragment extends DialogFragment implements TimePicker
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        FragmentActivity activity = requireActivity();
+        final FragmentActivity activity = requireActivity();
         viewModel = new ViewModelProvider(activity).get(AddTodoViewModel.class);
 
         // Use the current time as the default values for the picker.

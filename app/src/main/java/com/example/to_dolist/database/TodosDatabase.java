@@ -21,6 +21,7 @@ abstract class TodosDatabase extends RoomDatabase {
 
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(4);
 
+    @NonNull
     static TodosDatabase getDatabase(@NonNull Context context) {
         if (INSTANCE == null) {
             synchronized (TodosDatabase.class) {
