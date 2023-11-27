@@ -68,14 +68,15 @@ public class AddTodoActivity extends AppCompatActivity {
 
     private void onSave(View v) {
         final String todo = todoInput.getText().toString();
-        viewModel.onSave(todo, this::onSaveError, this::onSaveSuccess);
-    }
-
-    private void onSaveError(String error) {
-        Snackbar.make(findViewById(android.R.id.content), error, Snackbar.LENGTH_LONG).show();
-    }
-
-    private void onSaveSuccess() {
+        try {
+            viewModel.onSave(todo);
+        } catch (Exception e) {
+            String error = e.getMessage();
+            if (error != null) {
+                Snackbar.make(findViewById(android.R.id.content), error, Snackbar.LENGTH_LONG).show();
+            }
+            return;
+        }
         this.finish();
     }
 }

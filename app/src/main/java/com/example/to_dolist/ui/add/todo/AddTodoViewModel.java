@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.Date;
-import java.util.function.Consumer;
 
 public class AddTodoViewModel extends AndroidViewModel {
 
@@ -35,8 +34,8 @@ public class AddTodoViewModel extends AndroidViewModel {
         Log.d("AddTodoViewModel", "onDatePickerSet: " + year + ", " + month + ", " + day);
     }
 
-    public void onSave(@NonNull String todo, Consumer<String> onError, Runnable onSuccess) {
+    public void onSave(@NonNull String todo) throws Exception {
         // TODO: implement `onSave`
-        onError.accept("Save todo not yet implemented");
+        throw new Exception("Save todo not yet implemented");
     }
 }
