@@ -13,6 +13,5 @@
         android:strokeWidth="12"
         android:strokeColor="@color/splash_icon"
         android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:trimPathEnd="0" />
+        android:strokeLineJoin="round" />
 </vector>
