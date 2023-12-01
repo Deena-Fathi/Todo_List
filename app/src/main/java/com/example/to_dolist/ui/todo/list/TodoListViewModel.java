@@ -29,8 +29,4 @@ public class TodoListViewModel extends AndroidViewModel {
     public LiveData<List<Todo>> getTodos() {
         return todos;
     }
-
-    public void onUpdateTodo(@NonNull Todo todo) {
-        repository.updateTodo(todo);
-    }
 }

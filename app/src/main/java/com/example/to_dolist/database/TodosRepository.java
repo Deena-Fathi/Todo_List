@@ -23,8 +23,11 @@ public class TodosRepository {
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
-    public void insertTodo(@NonNull Todo todo) {
-        TodosDatabase.databaseWriteExecutor.execute(() -> dao.insertTodo(todo));
+    public void insertTodo(@NonNull Todo todo, Runnable onComplete) {
+        TodosDatabase.databaseWriteExecutor.execute(() -> {
+            dao.insertTodo(todo);
+            onComplete.run();
+        });
     }
 
     @NonNull
@@ -32,15 +35,24 @@ public class TodosRepository {
         return todos;
     }
 
-    public void updateTodo(@NonNull Todo todo) {
-        TodosDatabase.databaseWriteExecutor.execute(() -> dao.updateTodo(todo));
+    public void updateTodo(@NonNull Todo todo, Runnable onComplete) {
+        TodosDatabase.databaseWriteExecutor.execute(() -> {
+            dao.updateTodo(todo);
+            onComplete.run();
+        });
     }
 
-    public void deleteTodoById(int id) {
-        TodosDatabase.databaseWriteExecutor.execute(() -> dao.deleteTodoById(id));
+    public void deleteTodoById(int id, Runnable onComplete) {
+        TodosDatabase.databaseWriteExecutor.execute(() -> {
+            dao.deleteTodoById(id);
+            onComplete.run();
+        });
     }
 
-    public void deleteAllTodos() {
-        TodosDatabase.databaseWriteExecutor.execute(dao::deleteAllTodos);
+    public void deleteAllTodos(Runnable onComplete) {
+        TodosDatabase.databaseWriteExecutor.execute(() -> {
+            dao.deleteAllTodos();
+            onComplete.run();
+        });
     }
 }

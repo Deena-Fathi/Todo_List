@@ -14,4 +14,7 @@
     <string name="button_todo_time_picker_content_description">Open todo time picker</string>
     <string name="todo_date_picker_placeholder_text">Date</string>
     <string name="todo_time_picker_placeholder_text">Time</string>
+    <string name="add_todo_error_no_todo">Please enter the todo</string>
+    <string name="add_todo_error_no_date">Please pick the date and time</string>
+    <string name="add_todo_error_unexpected">Failed to save todo. Please try again.</string>
 </resources>

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -54,6 +55,7 @@ public class AddTodoActivity extends AppCompatActivity {
         timePickerButton.setOnClickListener(this::onShowTimePicker);
         viewModel.getDate().observe(this, this::onDateChanged);
         saveButton.setOnClickListener(this::onSave);
+        viewModel.todoSaved().observe(this, this::onTodoSavedChanged);
     }
 
     private void onShowDatePicker(View v) {
@@ -72,23 +74,22 @@ public class AddTodoActivity extends AppCompatActivity {
     }
 
     private void onSave(View v) {
-        final String todo = todoInput.getText().toString();
         try {
-            viewModel.onSave(todo);
+            viewModel.onSave(todoInput.getText().toString());
+        } catch (AddTodoViewModel.InvalidInputException e) {
+            onSaveError(e.getMessage());
         } catch (Exception e) {
-            String error = e.getMessage();
-            if (error != null) {
-                makeSnackbar(error, Snackbar.LENGTH_LONG).show();
-            }
-            return;
+            onSaveError(getString(R.string.add_todo_error_unexpected));
         }
-        this.finish();
     }
 
-    /**
-     * @noinspection SameParameterValue
-     */
-    private Snackbar makeSnackbar(String message, int duration) {
-        return Snackbar.make(findViewById(android.R.id.content), message, duration);
+    private void onSaveError(@NonNull String error) {
+        Snackbar.make(findViewById(android.R.id.content), error, Snackbar.LENGTH_LONG).show();
+    }
+
+    private void onTodoSavedChanged(boolean saved) {
+        if (saved) {
+            this.finish();
+        }
     }
 }
