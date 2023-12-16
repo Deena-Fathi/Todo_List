@@ -22,7 +22,7 @@ public class AddTodoActivity extends AppCompatActivity {
 
     private final DateFormat dateFormat = SimpleDateFormat.getDateInstance();
 
-    private final DateFormat timeFormat = SimpleDateFormat.getTimeInstance();
+    private final DateFormat timeFormat = SimpleDateFormat.getTimeInstance(DateFormat.SHORT);
 
     private AddTodoViewModel viewModel;
 
