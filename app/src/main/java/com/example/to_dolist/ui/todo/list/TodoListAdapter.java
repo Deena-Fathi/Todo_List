@@ -1,5 +1,7 @@
 package com.example.to_dolist.ui.todo.list;
 
+import android.icu.text.DateFormat;
+import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,11 @@ class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
+        private final DateFormat dateTimeFormat = SimpleDateFormat.getDateTimeInstance(
+                DateFormat.RELATIVE_SHORT,
+                DateFormat.RELATIVE_SHORT
+        );
+
         @NonNull
         private final CheckBox todoCheckbox;
 
@@ -33,8 +40,7 @@ class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
         void bind(@NonNull Todo todo) {
             todoCheckbox.setText(todo.getTodo());
             todoCheckbox.setChecked(todo.done());
-            // TODO: format date according to locale
-            todoDateText.setText(todo.getDate().toString());
+            todoDateText.setText(dateTimeFormat.format(todo.getDate()));
         }
     }
 
