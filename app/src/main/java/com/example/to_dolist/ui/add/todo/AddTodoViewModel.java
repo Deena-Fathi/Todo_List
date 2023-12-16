@@ -77,7 +77,7 @@ public class AddTodoViewModel extends AndroidViewModel {
 
         repository.insertTodo(
                 new Todo(0, todo, date, false),
-                () -> todoSaved.setValue(true)  // Notify the activity when we're done saving.
+                () -> todoSaved.postValue(true)
         );
     }
 
