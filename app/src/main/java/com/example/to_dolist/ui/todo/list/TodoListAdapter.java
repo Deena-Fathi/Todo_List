@@ -1,5 +1,6 @@
 package com.example.to_dolist.ui.todo.list;
 
+import android.graphics.Paint;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
@@ -16,7 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.to_dolist.R;
 import com.example.to_dolist.database.Todo;
 
+import java.util.function.BiConsumer;
+
 class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
+
+    @NonNull
+    private final BiConsumer<Todo, Boolean> onCheckedChange;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -31,16 +37,29 @@ class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
         @NonNull
         private final TextView todoDateText;
 
-        ViewHolder(@NonNull View itemView) {
+        @NonNull
+        private final BiConsumer<Todo, Boolean> onCheckedChange;
+
+        ViewHolder(@NonNull View itemView, @NonNull BiConsumer<Todo, Boolean> onCheckedChange) {
             super(itemView);
             this.todoCheckbox = itemView.findViewById(R.id.checkbox_todo);
             this.todoDateText = itemView.findViewById(R.id.text_todo_date);
+            this.onCheckedChange = onCheckedChange;
         }
 
         void bind(@NonNull Todo todo) {
             todoCheckbox.setText(todo.getTodo());
             todoCheckbox.setChecked(todo.done());
+            todoCheckbox.setOnCheckedChangeListener(
+                    (v, checked) -> onCheckedChange.accept(todo, checked)
+            );
             todoDateText.setText(dateTimeFormat.format(todo.getDate()));
+
+            if (todo.done()) {
+                todoCheckbox.setPaintFlags(todoCheckbox.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            } else {
+                todoCheckbox.setPaintFlags(todoCheckbox.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+            }
         }
     }
 
@@ -49,7 +68,7 @@ class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final View item = inflater.inflate(R.layout.todo_item, parent, false);
-        return new ViewHolder(item);
+        return new ViewHolder(item, onCheckedChange);
     }
 
     @Override
@@ -73,7 +92,8 @@ class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
         }
     }
 
-    TodoListAdapter() {
+    TodoListAdapter(@NonNull BiConsumer<Todo, Boolean> onCheckedChange) {
         super(new TodoDiff());
+        this.onCheckedChange = onCheckedChange;
     }
 }

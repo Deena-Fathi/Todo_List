@@ -2,7 +2,6 @@ package com.example.to_dolist.ui.todo.list;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,17 +10,16 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.to_dolist.R;
-import com.example.to_dolist.database.Todo;
 import com.example.to_dolist.ui.add.todo.AddTodoActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.List;
 
 public class TodoListActivity extends AppCompatActivity {
 
     private TodoListViewModel viewModel;
 
     private TodoListAdapter todosAdapter;
+
+    private TodoListAdapter todosDoneAdapter;
 
     private RecyclerView todosRecycler;
 
@@ -33,26 +31,32 @@ public class TodoListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_todo_list);
 
         viewModel = new ViewModelProvider(this).get(TodoListViewModel.class);
-        todosAdapter = new TodoListAdapter();
+        todosAdapter = new TodoListAdapter(viewModel::onTodoCheckedChange);
+        todosDoneAdapter = new TodoListAdapter(viewModel::onTodoCheckedChange);
         todosRecycler = findViewById(R.id.recycler_todos);
         addTodoButton = findViewById(R.id.button_add_todo);
 
         todosRecycler.setAdapter(
                 new ConcatAdapter(
                         new TodoListHeaderAdapter("Todos"),
-                        todosAdapter
+                        todosAdapter,
+                        new TodoListHeaderAdapter("Done"),
+                        todosDoneAdapter
                 )
         );
-        viewModel.getTodos().observe(this, this::onTodosChanged);
-        addTodoButton.setOnClickListener(this::onNavigateAddTodo);
-    }
 
-    private void onTodosChanged(List<Todo> todos) {
-        // Update the recycler view with the new list.
-        todosAdapter.submitList(todos);
-    }
+        viewModel.getTodos().observe(
+                this,
+                todos -> todosAdapter.submitList(todos)
+        );
 
-    private void onNavigateAddTodo(View v) {
-        startActivity(new Intent(this, AddTodoActivity.class));
+        viewModel.getTodosDone().observe(
+                this,
+                todos -> todosDoneAdapter.submitList(todos)
+        );
+
+        addTodoButton.setOnClickListener(
+                v -> startActivity(new Intent(this, AddTodoActivity.class))
+        );
     }
 }
