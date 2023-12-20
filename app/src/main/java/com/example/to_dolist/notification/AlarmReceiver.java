@@ -13,8 +13,24 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.example.to_dolist.R;
 
+/**
+ * BroadcastReceiver responsible for handling alarm events and triggering notifications
+ * to remind users of pending to-do tasks. <br>
+ *
+ * - context            The application context. <br>
+ * - intent             The Intent object containing alarm information. <br>
+ * - notification       The notification to be displayed to the user. <br>
+ * - notificationManager The NotificationManagerCompat for managing notifications.
+ */
 public class AlarmReceiver extends BroadcastReceiver {
 
+    /**
+     * Called when the BroadcastReceiver receives an Intent broadcast.
+     * Sends a notification to remind the user of a pending to-do task.
+     *
+     * @param context The application context.
+     * @param intent  The Intent object containing alarm information.
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         // Send a notification to the channel to notify the user that their to-do is due.
@@ -26,6 +42,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .build();
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        // Check for notification permissions before displaying the notification.
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             return;
         }

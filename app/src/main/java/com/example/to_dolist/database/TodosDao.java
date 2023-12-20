@@ -11,9 +11,9 @@ import java.util.List;
 
 @Dao
 interface TodosDao {
-
-    // Ignore insertion if a to-do with the same id
-    // already exists in the database.
+    /**
+     * Ignore insertion if a to-do with the same id already exists in the database.
+     */
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertTodo(Todo todo);
 

@@ -23,6 +23,20 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Date;
 
+/**
+ * Activity for adding new to-do items.
+ * Allows users to input task details, set date and time, and save the to-do. <br>
+ *
+ * - dateFormat        Format for displaying dates. <br>
+ * - timeFormat        Format for displaying times. <br>
+ * - viewModel         ViewModel for managing data and business logic. <br>
+ * - todoInput         EditText for entering the to-do description. <br>
+ * - datePickerButton  Button to show the date picker dialog. <br>
+ * - dateText          TextView to display the selected date. <br>
+ * - timePickerButton  Button to show the time picker dialog. <br>
+ * - timeText          TextView to display the selected time. <br>
+ * - saveButton        Button to save the to-do.
+ */
 public class AddTodoActivity extends AppCompatActivity {
 
     private final DateFormat dateFormat = SimpleDateFormat.getDateInstance();
@@ -43,6 +57,12 @@ public class AddTodoActivity extends AppCompatActivity {
 
     private Button saveButton;
 
+    /**
+     * Called when the activity is created.
+     * Initializes the UI components, ViewModel, and sets up event listeners.
+     *
+     * @param savedInstanceState Saved state of the activity.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +112,12 @@ public class AddTodoActivity extends AppCompatActivity {
         Snackbar.make(findViewById(android.R.id.content), error, Snackbar.LENGTH_LONG).show();
     }
 
+    /**
+     * Called when the to-do is successfully saved.
+     * Schedules a notification for the due date of the to-do.
+     *
+     * @param saved Boolean indicating whether the to-do is saved.
+     */
     private void onTodoSavedChanged(boolean saved) {
         final Date date = viewModel.getDate().getValue();
         if (!saved || date == null) {
