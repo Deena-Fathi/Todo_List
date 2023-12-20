@@ -24,6 +24,11 @@ class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
     @NonNull
     private final BiConsumer<Todo, Boolean> onCheckedChange;
 
+    TodoListAdapter(@NonNull BiConsumer<Todo, Boolean> onCheckedChange) {
+        super(new TodoDiff());
+        this.onCheckedChange = onCheckedChange;
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final DateFormat dateTimeFormat = SimpleDateFormat.getDateTimeInstance(
@@ -55,6 +60,7 @@ class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
             );
             todoDateText.setText(dateTimeFormat.format(todo.getDate()));
 
+            // Show a strike-through on the text of the to-do when it is done.
             if (todo.done()) {
                 todoCheckbox.setPaintFlags(todoCheckbox.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             } else {
@@ -90,10 +96,5 @@ class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.ViewHolder> {
                     oldItem.getDate().equals(newItem.getDate()) &&
                     oldItem.done() == newItem.done();
         }
-    }
-
-    TodoListAdapter(@NonNull BiConsumer<Todo, Boolean> onCheckedChange) {
-        super(new TodoDiff());
-        this.onCheckedChange = onCheckedChange;
     }
 }

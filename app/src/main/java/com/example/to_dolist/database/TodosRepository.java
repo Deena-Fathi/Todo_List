@@ -38,18 +38,4 @@ public class TodosRepository {
     public void updateTodo(@NonNull Todo todo) {
         TodosDatabase.databaseWriteExecutor.execute(() -> dao.updateTodo(todo));
     }
-
-    public void deleteTodoById(int id, Runnable onComplete) {
-        TodosDatabase.databaseWriteExecutor.execute(() -> {
-            dao.deleteTodoById(id);
-            onComplete.run();
-        });
-    }
-
-    public void deleteAllTodos(Runnable onComplete) {
-        TodosDatabase.databaseWriteExecutor.execute(() -> {
-            dao.deleteAllTodos();
-            onComplete.run();
-        });
-    }
 }

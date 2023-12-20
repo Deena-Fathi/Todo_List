@@ -98,6 +98,7 @@ public class AddTodoActivity extends AppCompatActivity {
             return;
         }
 
+        // Schedule a notification when the to-do is due.
         Intent intent = new Intent(this, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 this,

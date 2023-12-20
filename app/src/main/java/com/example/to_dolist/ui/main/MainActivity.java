@@ -4,9 +4,9 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -30,19 +30,25 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
 
         // If the app was launched before, skip the welcome screen.
-        final boolean firstLaunch = getPreferences(Context.MODE_PRIVATE).getBoolean(FIRST_LAUNCH_KEY, true);
+        final SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        final boolean firstLaunch = preferences.getBoolean(FIRST_LAUNCH_KEY, true);
         if (!firstLaunch) {
             replaceWithTodoList();
             return;
         }
 
         setContentView(R.layout.activity_main);
+
         getStartedButton = findViewById(R.id.button_get_started);
-        getStartedButton.setOnClickListener(this::onNavigateTodoList);
+        getStartedButton.setOnClickListener(v -> {
+            preferences.edit().putBoolean(FIRST_LAUNCH_KEY, false).apply();
+            replaceWithTodoList();
+        });
     }
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create the channel to send notifications when the to-do is due.
             NotificationChannel channel = new NotificationChannel(
                     "channel_id",
                     "Todo Notifications",
@@ -56,10 +62,5 @@ public class MainActivity extends AppCompatActivity {
     private void replaceWithTodoList() {
         startActivity(new Intent(this, TodoListActivity.class));
         this.finish();
-    }
-
-    private void onNavigateTodoList(View v) {
-        getPreferences(Context.MODE_PRIVATE).edit().putBoolean(FIRST_LAUNCH_KEY, false).apply();
-        replaceWithTodoList();
     }
 }

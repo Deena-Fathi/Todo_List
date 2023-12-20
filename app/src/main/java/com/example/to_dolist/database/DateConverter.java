@@ -5,6 +5,8 @@ import androidx.room.TypeConverter;
 
 import java.util.Date;
 
+// This class is used to convert dates to longs.
+// This is needed because Room cannot store dates.
 public class DateConverter {
 
     @TypeConverter

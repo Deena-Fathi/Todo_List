@@ -36,6 +36,8 @@ public class TodoListActivity extends AppCompatActivity {
         todosRecycler = findViewById(R.id.recycler_todos);
         addTodoButton = findViewById(R.id.button_add_todo);
 
+        // Show the list of todos with a header "Todos" and below it
+        // the list of done todos with a header "Done".
         todosRecycler.setAdapter(
                 new ConcatAdapter(
                         new TodoListHeaderAdapter("Todos"),
@@ -45,11 +47,11 @@ public class TodoListActivity extends AppCompatActivity {
                 )
         );
 
+        // Update the list of todos when the data changes.
         viewModel.getTodos().observe(
                 this,
                 todos -> todosAdapter.submitList(todos)
         );
-
         viewModel.getTodosDone().observe(
                 this,
                 todos -> todosDoneAdapter.submitList(todos)

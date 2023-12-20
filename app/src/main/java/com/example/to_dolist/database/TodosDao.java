@@ -12,8 +12,8 @@ import java.util.List;
 @Dao
 interface TodosDao {
 
-    // Prevent insertion if the passed to-do conflicts
-    // with an existing to-do in the database.
+    // Ignore insertion if a to-do with the same id
+    // already exists in the database.
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertTodo(Todo todo);
 
@@ -22,10 +22,4 @@ interface TodosDao {
 
     @Update()
     void updateTodo(Todo todo);
-
-    @Query("DELETE FROM todos WHERE id = :id")
-    void deleteTodoById(int id);
-
-    @Query("DELETE FROM todos")
-    void deleteAllTodos();
 }

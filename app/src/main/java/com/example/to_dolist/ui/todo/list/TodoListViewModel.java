@@ -29,6 +29,7 @@ public class TodoListViewModel extends AndroidViewModel {
 
     @NonNull
     public LiveData<List<Todo>> getTodos() {
+        // Filter the list of todos to only show the ones that are not done.
         return Transformations.map(
                 todos,
                 todos -> todos.stream()
@@ -39,6 +40,7 @@ public class TodoListViewModel extends AndroidViewModel {
 
     @NonNull
     public LiveData<List<Todo>> getTodosDone() {
+        // Filter the list of todos to only show the ones that are done.
         return Transformations.map(
                 todos,
                 todos -> todos.stream()
@@ -48,6 +50,7 @@ public class TodoListViewModel extends AndroidViewModel {
     }
 
     public void onTodoCheckedChange(@NonNull Todo todo, boolean checked) {
+        // Update the to-do in the database when the user marks it as done.
         final Todo newTodo = new Todo(
                 todo.getId(),
                 todo.getTodo(),
