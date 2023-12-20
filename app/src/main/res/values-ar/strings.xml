@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SnapTodo</string>
+    <string name="title_welcome">مرحباً بك!</string>
+    <string name="button_get_started_text">ابدأ الآن</string>
+    <string name="button_add_todo_content_description">اذهب الى صفحة "اضافة المهام"</string>
+    <string name="title_todos">المهام</string>
+    <string name="title_todos_done">المهام المنتهية</string>
+    <string name="title_add_todo">اضف مهمة</string>
+    <string name="label_input_todo">المهمة</string>
+    <string name="button_save_todo_text">حفظ</string>
+    <string name="todo_date_picker_placeholder_text">التاريخ</string>
+    <string name="todo_time_picker_placeholder_text">الوقت</string>
+    <string name="button_todo_date_picker_content_description">اختر التاريخ</string>
+    <string name="button_todo_time_picker_content_description">اختر الوقت</string>
+    <string name="add_todo_error_no_todo">من فضلك ادخل المهمة</string>
+    <string name="add_todo_error_no_date">من فضلك ادخل التاريخ و الوقت</string>
+    <string name="add_todo_error_unexpected">فشلت اضافة المهمة. حاول مرة اخرى.</string>
+    <string name="todo_notification_title">نذكرك بالمهام</string>
+    <string name="todo_notification_description">لديك مهمة الآن</string>
+</resources>

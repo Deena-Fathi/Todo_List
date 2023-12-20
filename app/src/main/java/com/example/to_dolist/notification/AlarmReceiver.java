@@ -20,8 +20,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Send a notification to the channel to notify the user that their to-do is due.
         Notification notification = new NotificationCompat.Builder(context, "channel_id")
                 .setSmallIcon(R.drawable.ic_checklist)
-                .setContentTitle("Todo Reminder")
-                .setContentText("You have a due todo!")
+                .setContentTitle(context.getString(R.string.todo_notification_title))
+                .setContentText(context.getString(R.string.todo_notification_description))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .build();
 

@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    val roomVersion = "2.6.0"
+    val roomVersion = "2.6.1"
     val lifecycleVersion = "2.6.2"
 
     // Room components
@@ -46,7 +46,7 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion")
 
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
+    implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.core:core-splashscreen:1.1.0-alpha02")

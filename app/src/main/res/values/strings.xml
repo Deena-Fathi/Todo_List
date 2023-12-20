@@ -1,14 +1,12 @@
 <resources>
-    <string name="app_name">Todo List</string>
+    <string name="app_name">SnapTodo</string>
     <string name="title_welcome">Welcome to your todo list!</string>
     <string name="button_get_started_text">Get started</string>
     <string name="button_add_todo_content_description">Go to the "Add Todo" screen</string>
-    <string name="title_todos_today">Today</string>
-    <string name="title_todos_upcoming">Upcoming</string>
+    <string name="title_todos">Todos</string>
+    <string name="title_todos_done">Done</string>
     <string name="title_add_todo">Add Todo</string>
     <string name="label_input_todo">Todo</string>
-    <string name="label_input_todo_date">Date</string>
-    <string name="label_input_todo_time">Time</string>
     <string name="button_save_todo_text">Save</string>
     <string name="button_todo_date_picker_content_description">Open todo date picker</string>
     <string name="button_todo_time_picker_content_description">Open todo time picker</string>
@@ -17,4 +15,6 @@
     <string name="add_todo_error_no_todo">Please enter the todo</string>
     <string name="add_todo_error_no_date">Please pick the date and time</string>
     <string name="add_todo_error_unexpected">Failed to save todo. Please try again.</string>
+    <string name="todo_notification_title">Todo Reminder</string>
+    <string name="todo_notification_description">You have a todo due!</string>
 </resources>
