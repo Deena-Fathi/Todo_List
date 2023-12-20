@@ -15,11 +15,11 @@ import com.example.to_dolist.R;
 
 /**
  * BroadcastReceiver responsible for handling alarm events and triggering notifications
- * to remind users of pending to-do tasks. <br>
+ * to remind users of pending to-do tasks.
  *
- * - context            The application context. <br>
- * - intent             The Intent object containing alarm information. <br>
- * - notification       The notification to be displayed to the user. <br>
+ * - context            The application context.
+ * - intent             The Intent object containing alarm information.
+ * - notification       The notification to be displayed to the user.
  * - notificationManager The NotificationManagerCompat for managing notifications.
  */
 public class AlarmReceiver extends BroadcastReceiver {

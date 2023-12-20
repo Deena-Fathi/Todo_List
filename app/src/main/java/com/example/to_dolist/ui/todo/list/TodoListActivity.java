@@ -56,9 +56,9 @@ public class TodoListActivity extends AppCompatActivity {
         // the list of done todos with a header "Done".
         todosRecycler.setAdapter(
                 new ConcatAdapter(
-                        new TodoListHeaderAdapter("Todos"),
+                        new TodoListHeaderAdapter(getString(R.string.title_todos)),
                         todosAdapter,
-                        new TodoListHeaderAdapter("Done"),
+                        new TodoListHeaderAdapter(getString(R.string.title_todos_done)),
                         todosDoneAdapter
                 )
         );
