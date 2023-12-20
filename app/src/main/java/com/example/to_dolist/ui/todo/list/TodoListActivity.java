@@ -13,6 +13,16 @@ import com.example.to_dolist.R;
 import com.example.to_dolist.ui.add.todo.AddTodoActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+/**
+ * Activity for displaying the list of todos.
+ * Allows users to view the list of todos and mark them as done. <br>
+ *
+ * - viewModel         ViewModel for managing data and business logic. <br>
+ * - todosAdapter      Adapter for displaying the list of todos. <br>
+ * - todosDoneAdapter  Adapter for displaying the list of done todos. <br>
+ * - todosRecycler     RecyclerView for displaying the list of todos and done todos. <br>
+ * - addTodoButton     FloatingActionButton for adding a new to-do.
+ */
 public class TodoListActivity extends AppCompatActivity {
 
     private TodoListViewModel viewModel;
@@ -25,6 +35,12 @@ public class TodoListActivity extends AppCompatActivity {
 
     private FloatingActionButton addTodoButton;
 
+    /**
+     * Called when the activity is created.
+     * Initializes the UI components, ViewModel, and sets up event listeners.
+     *
+     * @param savedInstanceState Saved state of the activity.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +72,7 @@ public class TodoListActivity extends AppCompatActivity {
                 this,
                 todos -> todosDoneAdapter.submitList(todos)
         );
-
+        // Set up event listener for the FloatingActionButton
         addTodoButton.setOnClickListener(
                 v -> startActivity(new Intent(this, AddTodoActivity.class))
         );
