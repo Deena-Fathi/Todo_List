@@ -1,7 +1,10 @@
 package com.example.to_dolist.ui.main;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);
 
+        createNotificationChannel();
+
         // If the app was launched before, skip the welcome screen.
         final boolean firstLaunch = getPreferences(Context.MODE_PRIVATE).getBoolean(FIRST_LAUNCH_KEY, true);
         if (!firstLaunch) {
@@ -34,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getStartedButton = findViewById(R.id.button_get_started);
         getStartedButton.setOnClickListener(this::onNavigateTodoList);
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    "channel_id",
+                    "Todo Notifications",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
     private void replaceWithTodoList() {

@@ -1,5 +1,9 @@
 package com.example.to_dolist.ui.add.todo;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -14,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.to_dolist.R;
+import com.example.to_dolist.notification.AlarmReceiver;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Date;
@@ -88,8 +93,22 @@ public class AddTodoActivity extends AppCompatActivity {
     }
 
     private void onTodoSavedChanged(boolean saved) {
-        if (saved) {
-            this.finish();
+        final Date date = viewModel.getDate().getValue();
+        if (!saved || date == null) {
+            return;
         }
+
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this,
+                0,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE
+        );
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, date.getTime(), pendingIntent);
+
+        this.finish();
     }
 }
